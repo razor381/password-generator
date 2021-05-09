@@ -23,8 +23,9 @@ const tweakers = {
 
 const lengthDenoter = document.querySelector('#pass-length');
 const lengthRangeField = document.querySelector("#pass-length-slider");
-const generateBtn = document.querySelector(".generate-btn");
-const copyBtn = document.querySelector(".copy-btn");
+const generateBtn = document.querySelector('.generate-btn');
+const copyBtn = document.querySelector('.copy-btn');
+const bubbleImg = document.querySelector('.bubble-img')
 
 
 // ---------------- logic --------------------
@@ -36,14 +37,16 @@ if (generateBtn) {
   });
 }
 
-if (copyBtn && outputField.value.length) {
+if (copyBtn && bubbleImg) {
   copyBtn.addEventListener('click', () => {
-    outputField.focus();
-    outputField.select();
+    if (outputField.value.length) {
+      outputField.focus();
+      outputField.select();
+      document.execCommand('copy');
+      deselectText(outputField);
 
-    document.execCommand('copy');
-
-    deselectText(outputField);
+      displayCrafterMessage();
+    }
   });
 }
 
@@ -113,4 +116,12 @@ function deselectText(element) {
   } else if (document.selection) { // IE <=8
     document.selection.empty();
   }
+}
+
+function displayCrafterMessage() {
+  bubbleImg.style.opacity = '1';
+
+  window.setTimeout(() => {
+    bubbleImg.style.opacity = '0';
+  }, 800);
 }

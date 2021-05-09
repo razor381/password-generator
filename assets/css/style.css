@@ -54,7 +54,7 @@ label {
 }
 
 .container {
-  width: 70%;
+  width: 50%;
   height: 100%;
   margin: 0 auto;
   padding: 8rem 2rem 0;
@@ -83,14 +83,22 @@ label {
   position: relative;
 }
 
-.crafter-img {
+.crafter-img-wrapper {
   position: absolute;
   left: 0;
   top: -8rem;
   z-index: 200;
 }
 
-.crafter-img img{
+.bubble-img {
+  position: absolute;
+  top: -2.5rem;
+  left: -4rem;
+  opacity: 0;
+  transition: 0.2s all ease;
+}
+
+.crafter-img{
   height: 13rem;
 }
 
