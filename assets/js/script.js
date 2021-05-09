@@ -21,7 +21,8 @@ const tweakers = {
   3: document.querySelector("#number"),
 };
 
-const lengthInputField = document.querySelector("#length");
+const lengthDenoter = document.querySelector('#pass-length');
+const lengthRangeField = document.querySelector("#pass-length-slider");
 const generateBtn = document.querySelector(".generate-btn");
 const copyBtn = document.querySelector(".copy-btn");
 
@@ -29,10 +30,32 @@ const copyBtn = document.querySelector(".copy-btn");
 // ---------------- logic --------------------
 
 
-
 if (generateBtn) {
   generateBtn.addEventListener("click", (e) => {
     callGenerator();
+  });
+}
+
+if (copyBtn && outputField.value.length) {
+  copyBtn.addEventListener('click', () => {
+    outputField.focus();
+    outputField.select();
+
+    document.execCommand('copy');
+
+    deselectText(outputField);
+  });
+}
+
+if (lengthRangeField && lengthDenoter) {
+  lengthDenoter.innerHTML = lengthRangeField.value;
+
+  lengthRangeField.addEventListener('change', (e) => {
+    lengthDenoter.innerHTML = e.target.value;
+  });
+
+  lengthRangeField.addEventListener('input', (e) => {
+    lengthDenoter.innerHTML = e.target.value;
   });
 }
 
@@ -42,9 +65,12 @@ if (generateBtn) {
 
 function callGenerator() {
   const characterPool = getCharacterPool(tweakers);
-  const passwordLength = lengthInputField.value;
+  const passwordLength = +lengthRangeField.value;
   const password = generatePassword(characterPool, passwordLength);
-  outputField.value = password;
+
+  if (password.length) {
+    outputField.value = password;
+  }
 }
 
 function getRandomNumber(n) {
@@ -71,5 +97,20 @@ function generatePassword(charPool, passwordLength) {
     password.push(charPool[randomIndex]);
   }
 
-  return password.join("");
+  return password.join('');
+}
+
+function deselectText(element) {
+  if (element && /INPUT|TEXTAREA/i.test(element.tagName)) {
+    if ('selectionStart' in element) {
+      element.selectionEnd = element.selectionStart;
+    }
+    element.blur();
+  }
+
+  if (window.getSelection) { // All browsers, except IE <=8
+    window.getSelection().removeAllRanges();
+  } else if (document.selection) { // IE <=8
+    document.selection.empty();
+  }
 }
