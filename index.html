@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SE33 | Pass-generator</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Password-Craftr</h1>
+    </header>
+    <main class="main">
+
+      <div class="output">
+        <div class="crafter-img">
+          <img src="assets/img/builder.png" alt="crafter crafting">
+        </div>
+        <input
+          type="text"
+          class="generated-password"
+          readonly
+          placeholder="Click Generate"
+        >
+      </div>
+
+      <div class="tweaker">
+        <form class="tweaker-checkboxes">
+          <div class="tweaker-checkbox">
+            <input type="checkbox" class="checkbox" id="upper">
+            <label class="label" for="upper">Uppercase</label>
+          </div>
+          <div class="tweaker-checkbox">
+            <input type="checkbox" class="checkbox" id="lower">
+            <label class="label" for="lower">Lowercase</label>
+          </div>
+          <div class="tweaker-checkbox">
+            <input type="checkbox" class="checkbox" id="symbol">
+            <label class="label" for="symbol">Symbols</label>
+          </div>
+          <div class="tweaker-checkbox">
+            <input type="checkbox" class="checkbox" id="number">
+            <label class="label" for="number">Numbers</label>
+          </div>
+        </form>
+        <div class="slider">
+          <label class="label" for="length">Password Length</label>
+          <input type="number" id="length" value="10">
+        </div>
+      </div>
+
+      <div class="handler">
+        <button class="btn generate-btn">Generate</button>
+        <button class="btn copy-btn">Copy</button>
+      </div>
+    </main>
+  </div>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
